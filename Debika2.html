@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debika Thongam | Research Scholar</title>
+    <meta name="description" content="Academic portfolio of Debika Thongam. Research in Nanotechnology, Energy Science, and Photocatalysis.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts: Playfair Display (Serif) & Lato (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        sage: {
+                            50: '#f4f7f5',
+                            100: '#e3ebe6',
+                            200: '#c5d9cd',
+                            300: '#9dbfa9',
+                            400: '#759f84',
+                            500: '#558266', // Primary Sage
+                            600: '#41664f',
+                            700: '#355240',
+                            800: '#2c4235',
+                            900: '#25372d',
+                        },
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            800: '#292524',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide all sections by default, JS will toggle them */
+        .page-section {
+            display: none;
+        }
+        /* Show active section */
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .nav-link.active {
+            color: #558266; /* sage-500 */
+            border-bottom: 2px solid #558266;
+        }
+    </style>
+</head>
+<body class="font-sans text-stone-700 bg-stone-50 antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 border-b border-stone-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="switchTab('home')">
+                    <span class="font-serif text-2xl md:text-3xl text-sage-700 tracking-wide hover:opacity-80 transition-opacity">
+                        Debika<span class="text-stone-400 text-lg font-sans font-light ml-1 tracking-widest uppercase">Thongam</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-6 items-center">
+                    <button onclick="switchTab('home')" class="nav-link text-stone-600 hover:text-sage-600 font-bold text-sm tracking-wide uppercase transition-colors py-2 border-b-2 border-transparent">Home</button>
+                    <button onclick="switchTab('about')" class="nav-link text-stone-600 hover:text-sage-600 font-medium text-sm tracking-wide uppercase transition-colors py-2 border-b-2 border-transparent">About</button>
+                    <button onclick="switchTab('research')" class="nav-link text-stone-600 hover:text-sage-600 font-medium text-sm tracking-wide uppercase transition-colors py-2 border-b-2 border-transparent">Research</button>
+                    <button onclick="switchTab('publication')" class="nav-link text-stone-600 hover:text-sage-600 font-medium text-sm tracking-wide uppercase transition-colors py-2 border-b-2 border-transparent">Publications</button>
+                    <button onclick="switchTab('photography')" class="nav-link text-stone-600 hover:text-sage-600 font-medium text-sm tracking-wide uppercase transition-colors py-2 border-b-2 border-transparent">Photography</button>
+                    <button onclick="switchTab('book-summary')" class="nav-link text-stone-600 hover:text-sage-600 font-medium text-sm tracking-wide uppercase transition-colors py-2 border-b-2 border-transparent">Book Summary</button>
+                    
+                    <button onclick="switchTab('contact')" class="px-5 py-2 bg-sage-500 text-white font-medium text-sm tracking-wide uppercase hover:bg-sage-600 transition-all rounded-sm shadow-sm">
+                        Contact
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-stone-600 hover:text-sage-600 focus:outline-none p-2" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-stone-100 absolute w-full shadow-lg h-screen overflow-y-auto pb-20 z-40">
+            <div class="px-6 pt-4 pb-6 space-y-4 flex flex-col text-center">
+                <button onclick="switchTab('home')" class="block w-full text-left px-3 py-3 text-stone-600 hover:text-sage-600 font-medium uppercase tracking-wide border-b border-stone-100 active:bg-stone-50">Home</button>
+                <button onclick="switchTab('about')" class="block w-full text-left px-3 py-3 text-stone-600 hover:text-sage-600 font-medium uppercase tracking-wide border-b border-stone-100 active:bg-stone-50">About</button>
+                <button onclick="switchTab('research')" class="block w-full text-left px-3 py-3 text-stone-600 hover:text-sage-600 font-medium uppercase tracking-wide border-b border-stone-100 active:bg-stone-50">Research</button>
+                <button onclick="switchTab('publication')" class="block w-full text-left px-3 py-3 text-stone-600 hover:text-sage-600 font-medium uppercase tracking-wide border-b border-stone-100 active:bg-stone-50">Publications</button>
+                <button onclick="switchTab('photography')" class="block w-full text-left px-3 py-3 text-stone-600 hover:text-sage-600 font-medium uppercase tracking-wide border-b border-stone-100 active:bg-stone-50">Photography</button>
+                <button onclick="switchTab('book-summary')" class="block w-full text-left px-3 py-3 text-stone-600 hover:text-sage-600 font-medium uppercase tracking-wide border-b border-stone-100 active:bg-stone-50">Book Summary</button>
+                <button onclick="switchTab('contact')" class="block w-full text-left px-3 py-3 text-sage-600 font-bold uppercase tracking-wide mt-2 active:bg-stone-50">Contact</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="flex-grow pt-20">
+
+        <!-- ================= HOME TAB ================= -->
+        <section id="home" class="page-section active">
+            <div class="relative h-[calc(100vh-80px)] min-h-[500px] flex items-center justify-center overflow-hidden">
+                <!-- Background Image -->
+                <div class="absolute inset-0 z-0">
+                    <img src="dev1.jpeg" alt="Calming Nature Leaves" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-white/40 mix-blend-overlay"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-white/10 to-stone-50/90"></div>
+                </div>
+
+                <div class="relative z-10 text-center max-w-3xl px-6 animate-fade-in">
+                    <p class="text-sage-700 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4">Nanotechnology & Energy Science</p>
+                    <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl text-stone-800 leading-tight mb-6">
+                        Innovating for a <br> <span class="italic text-sage-600">Sustainable Future</span>
+                    </h1>
+                    <p class="text-base md:text-xl text-stone-600 font-light mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+                        I am a Research Scholar specializing in nanomaterials, photocatalysis, and energy solutions. Exploring the intersection of materials science and environmental preservation.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="switchTab('research')" class="px-10 py-3 md:py-4 bg-stone-800 text-white font-medium tracking-widest uppercase hover:bg-sage-600 transition-all duration-300 shadow-md text-sm md:text-base">
+                            Research Projects
+                        </button>
+                        <button onclick="switchTab('publication')" class="px-10 py-3 md:py-4 bg-white border border-stone-300 text-stone-700 font-medium tracking-widest uppercase hover:bg-stone-50 transition-all duration-300 shadow-sm text-sm md:text-base">
+                            Publications
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT TAB ================= -->
+        <section id="about" class="page-section">
+            <div class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+                <!-- Bio Header -->
+                <div class="text-center mb-10 md:mb-16">
+                    <h3 class="text-sage-600 font-bold tracking-widest uppercase text-sm mb-3">Biography</h3>
+                    <h2 class="font-serif text-3xl md:text-4xl text-stone-800">About Debika</h2>
+                    <div class="w-24 h-1 bg-sage-300 mx-auto mt-6"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+                    <!-- Image -->
+                    <div class="relative">
+                        <div class="absolute top-4 -left-4 w-full h-full border-2 border-sage-200 z-0"></div>
+                        <img src="dev2.jpeg" alt="Debika Portrait" class="relative z-10 w-full h-96 md:h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-lg">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="space-y-6 text-base md:text-lg text-stone-600 font-light leading-relaxed mt-4 md:mt-0">
+                        <p>
+                            <span class="text-xl md:text-2xl font-serif text-sage-700 italic">I am a Research Scholar</span> at the School of Energy Science and Engineering, <strong>Indian Institute of Technology (IIT) Guwahati</strong>. My passion lies in harnessing the potential of nanotechnology to solve critical energy and environmental challenges.
+                        </p>
+                        <p>
+                            Currently, I also serve as a <strong>Visiting Researcher</strong> at the Department of Materials and Optoelectronic Science, <strong>National Sun Yat-sen University, Taiwan</strong>. My research primarily focuses on heterostructure charge transfer dynamics, photocatalysis for water pollution mitigation, and the development of novel nanomaterials.
+                        </p>
+                        <p>
+                            Beyond the lab, I am actively involved in public engagement and leadership, having served as a Postgraduate Senator at IIT Guwahati and organized events for the G20 University Connect.
+                        </p>
+                        
+                        <div class="pt-6">
+                            <h4 class="font-bold text-stone-800 uppercase text-xs tracking-wider mb-4">Education</h4>
+                            <ul class="space-y-3 text-sm md:text-base">
+                                <li class="flex items-center">
+                                    <i class="fas fa-graduation-cap text-sage-500 w-8"></i>
+                                    <span><strong>Ph.D. Energy Science & Engineering</strong>, IIT Guwahati (Submitted)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-university text-sage-500 w-8"></i>
+                                    <span><strong>M.Tech Nanotechnology</strong>, Vellore Institute of Technology (2016)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-book text-sage-500 w-8"></i>
+                                    <span><strong>B.Tech Electronics & Comm. (ECE)</strong>, Lovely Professional University (2014)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                         <div class="pt-4">
+                            <h4 class="font-bold text-stone-800 uppercase text-xs tracking-wider mb-2">Technical Proficiency</h4>
+                            <p class="text-sm text-stone-600">
+                                FESEM, XRD, Raman Spectroscopy, AFM, Photocatalysis (UV & Solar), Cyclic Voltammetry, FTIR.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= RESEARCH TAB ================= -->
+        <section id="research" class="page-section">
+            <div class="bg-sage-50 py-12 md:py-16">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="text-center mb-10 md:mb-16">
+                        <h3 class="text-sage-600 font-bold tracking-widest uppercase text-sm mb-3">Academic Work</h3>
+                        <h2 class="font-serif text-3xl md:text-4xl text-stone-800">Current Research Interests</h2>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                        <!-- Interest 1 -->
+                        <div class="bg-white p-8 shadow-sm border-t-4 border-sage-400 hover:-translate-y-1 transition-transform duration-300">
+                            <i class="fas fa-atom text-sage-500 text-3xl mb-4"></i>
+                            <h3 class="font-serif text-xl text-stone-800 mb-3">Heterogeneous Photocatalysis</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Developing advanced nanomaterials for heterogeneous photocatalysis to efficiently degrade pollutants and generate clean energy under natural sunlight.
+                            </p>
+                        </div>
+                        <!-- Interest 2 -->
+                        <div class="bg-white p-8 shadow-sm border-t-4 border-sage-400 hover:-translate-y-1 transition-transform duration-300">
+                            <i class="fas fa-water text-sage-500 text-3xl mb-4"></i>
+                            <h3 class="font-serif text-xl text-stone-800 mb-3">Water Pollution Mitigation</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Utilizing nanotechnology to address climate change and water pollution. Designing functionalized nanocomposites for the breakdown of organic pollutants in water bodies.
+                            </p>
+                        </div>
+                        <!-- Interest 3 -->
+                        <div class="bg-white p-8 shadow-sm border-t-4 border-sage-400 hover:-translate-y-1 transition-transform duration-300">
+                            <i class="fas fa-microchip text-sage-500 text-3xl mb-4"></i>
+                            <h3 class="font-serif text-xl text-stone-800 mb-3">Nanostructure Synthesis</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Investigation of charge carrier dynamics in Type I and Type II heterostructures (e.g., ZnO/TiO2, ZnO/Fe3O4) and functionalization of carbon nanotubes (SWCNTs).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ongoing Projects -->
+            <div class="max-w-4xl mx-auto px-6 py-12 md:py-16">
+                <h3 class="font-serif text-2xl text-stone-800 mb-8 border-b border-stone-200 pb-2">Selected Ongoing & Submitted Work</h3>
+                
+                <div class="space-y-8">
+                    <div class="flex flex-col md:flex-row gap-2 md:gap-6">
+                        <div class="md:w-1/4">
+                            <span class="inline-block px-3 py-1 bg-sage-100 text-sage-700 text-xs font-bold uppercase tracking-wide rounded-full">Submitted</span>
+                            <p class="text-stone-400 text-sm mt-1 md:mt-2">Under Review</p>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h4 class="font-bold text-lg text-stone-800">Carbon-based Electrocatalysts</h4>
+                            <p class="text-stone-600 mt-2 text-sm md:text-base">"Doping and defect engineering in carbon-based electrocatalysts for enhanced electrochemical CO2 reduction" — Investigating methods to improve efficiency in converting CO2 into useful chemical feedstocks.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-2 md:gap-6">
+                        <div class="md:w-1/4">
+                            <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-bold uppercase tracking-wide rounded-full">In Preparation</span>
+                            <p class="text-stone-400 text-sm mt-1 md:mt-2">Writing Process</p>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h4 class="font-bold text-lg text-stone-800">PVDF-based Polymeric Membranes</h4>
+                            <p class="text-stone-600 mt-2 text-sm md:text-base">"Sunlight-responsive PVDF-based polymeric membrane coated with g-C3N4 for photocatalytic degradation of organic pollutants."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PUBLICATIONS TAB ================= -->
+        <section id="publication" class="page-section">
+            <div class="max-w-5xl mx-auto px-6 py-12 md:py-16">
+                <div class="text-center mb-10 md:mb-12">
+                    <h3 class="text-sage-600 font-bold tracking-widest uppercase text-sm mb-3">Research Output</h3>
+                    <h2 class="font-serif text-3xl md:text-4xl text-stone-800">Publications</h2>
+                </div>
+
+                <!-- Metrics Circles -->
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 mb-16">
+                    <!-- Circle 1: H-Index -->
+                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-sage-300 bg-white flex flex-col items-center justify-center shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300">
+                        <span class="text-3xl md:text-4xl font-serif text-stone-800 font-bold">8</span>
+                        <span class="text-xs md:text-sm font-bold text-sage-600 uppercase tracking-widest mt-1">H-Index</span>
+                    </div>
+
+                    <!-- Circle 2: Citations -->
+                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-sage-300 bg-white flex flex-col items-center justify-center shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300">
+                        <span class="text-3xl md:text-4xl font-serif text-stone-800 font-bold">275+</span>
+                        <span class="text-xs md:text-sm font-bold text-sage-600 uppercase tracking-widest mt-1">Citations</span>
+                    </div>
+                </div>
+
+                <div class="space-y-8 md:space-y-10 relative border-l border-stone-200 ml-4 md:ml-0 pl-6 md:pl-0">
+                    
+                    <!-- Submitted / Under Review (Grouped) -->
+                    <div class="relative flex flex-col md:grid md:grid-cols-5 md:gap-8 group">
+                        <div class="hidden md:block absolute left-[19.6%] top-2 w-3 h-3 bg-stone-300 rounded-full group-hover:bg-sage-500 transition-colors z-10 border border-white"></div>
+                        <div class="md:col-span-1 text-left md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-lg md:text-xl font-serif text-sage-600 font-bold italic">Submitted</span>
+                        </div>
+                        <div class="md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                            <!-- Paper 1 -->
+                            <div class="mb-8 border-b border-stone-100 pb-8 last:border-0 last:pb-0 last:mb-0">
+                                <h4 class="text-lg font-bold text-stone-800 mb-1">Understanding Charge Carrier Dynamics in Type I and Type II Heterostructures for photocatalysis: ZnO/TiO2, ZnOFe3O4</h4>
+                                <p class="text-sm text-stone-500 italic mb-2">Journal of Physics and Chemistry of Solids (Under Review)</p>
+                                <p class="text-stone-600 leading-relaxed text-sm mb-3"><strong>Thongam, D. D.</strong>, H. Chaturvedi</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 0</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 0</a>
+                                </div>
+                            </div>
+
+                            <!-- Paper 2 -->
+                            <div class="mb-8 border-b border-stone-100 pb-8 last:border-0 last:pb-0 last:mb-0">
+                                <h4 class="text-lg font-bold text-stone-800 mb-1">Z-scheme charge transfer dynamics in g-C3N4/ZnO heterostructure interface and its photocatalytic activity activated by natural sunlight</h4>
+                                <p class="text-sm text-stone-500 italic mb-2">(Submitted)</p>
+                                <p class="text-stone-600 leading-relaxed text-sm mb-3"><strong>Thongam, D. D.</strong>, H. Chaturvedi</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 0</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 0</a>
+                                </div>
+                            </div>
+
+                            <!-- Paper 3 -->
+                            <div class="mb-0 border-b border-stone-100 pb-0 last:border-0 last:pb-0 last:mb-0">
+                                <h4 class="text-lg font-bold text-stone-800 mb-1">Doping and defect engineering in carbon-based electrocatalysts for enhanced electrochemical CO2 reduction</h4>
+                                <p class="text-sm text-stone-500 italic mb-2">CARBON (Submitted)</p>
+                                <p class="text-stone-600 leading-relaxed text-sm mb-3"><strong>Thongam, D. D.</strong>, Chi-Te Liang, Mitch M. C. Chou, Da-Ren Hang</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 0</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 0</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2023 Grouped -->
+                    <div class="relative flex flex-col md:grid md:grid-cols-5 md:gap-8 group">
+                        <div class="hidden md:block absolute left-[19.6%] top-2 w-3 h-3 bg-stone-300 rounded-full group-hover:bg-sage-500 transition-colors z-10 border border-white"></div>
+                        <div class="md:col-span-1 text-left md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-xl md:text-2xl font-serif text-sage-600 font-bold">2023</span>
+                        </div>
+                        <div class="md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                            
+                            <!-- Paper 1 -->
+                            <div class="mb-8 border-b border-stone-100 pb-8 last:border-0 last:pb-0 last:mb-0">
+                                <h4 class="text-lg font-bold text-stone-800 mb-1">Heterostructure charge transfer dynamics on self-assembled ZnO on electronically different SWCNTs</h4>
+                                <p class="text-sm text-stone-500 italic mb-2">Chemosphere 323, 138239</p>
+                                <p class="text-stone-600 leading-relaxed text-sm mb-3">
+                                    <strong>Thongam, D. D. & Chaturvedi, H.</strong> — This study explores the charge transfer mechanisms in ZnO and single-walled carbon nanotube (SWCNT) heterostructures.
+                                </p>
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 5</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 20</a>
+                                </div>
+                            </div>
+
+                            <!-- Paper 2 -->
+                            <div class="mb-0 border-b border-stone-100 pb-0 last:border-0 last:pb-0 last:mb-0">
+                                <h4 class="text-lg font-bold text-stone-800 mb-1">Induced defect and ZnO nano-flower formation by DMF solvent for floating photocatalytic advanced oxidation</h4>
+                                <p class="text-sm text-stone-500 italic mb-2">Chemosphere 313, 137600</p>
+                                <p class="text-stone-600 leading-relaxed text-sm mb-3">
+                                    <strong>Thongam, D. D. & Chaturvedi, H.</strong> — Investigating the formation of ZnO nano-flowers using N,N-dimethylformamide and their application in natural sunlight responsive floating photocatalysis.
+                                </p>
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 8</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 32</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 2022 -->
+                    <div class="relative flex flex-col md:grid md:grid-cols-5 md:gap-8 group">
+                        <div class="hidden md:block absolute left-[19.6%] top-2 w-3 h-3 bg-stone-300 rounded-full group-hover:bg-sage-500 transition-colors z-10 border border-white"></div>
+                        <div class="md:col-span-1 text-left md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-xl md:text-2xl font-serif text-sage-600 font-bold">2022</span>
+                        </div>
+                        <div class="md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                            <h4 class="text-lg font-bold text-stone-800 mb-1">Functionalization of Pristine, Metallic, and Semiconducting-SWCNTs by ZnO for Efficient Charge Carrier Transfer</h4>
+                            <p class="text-sm text-stone-500 italic mb-2">ACS Omega 7, 14784-14796</p>
+                            <p class="text-stone-600 leading-relaxed text-sm mb-3">
+                                <strong>Thongam, D. D. & Chaturvedi, H.</strong> — Analysis through critical coagulation concentration to understand how ZnO functionalizes different types of carbon nanotubes.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 15</a>
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 54</a>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- 2021 Grouped -->
+                     <div class="relative flex flex-col md:grid md:grid-cols-5 md:gap-8 group">
+                        <div class="hidden md:block absolute left-[19.6%] top-2 w-3 h-3 bg-stone-300 rounded-full group-hover:bg-sage-500 transition-colors z-10 border border-white"></div>
+                        <div class="md:col-span-1 text-left md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-xl md:text-2xl font-serif text-sage-600 font-bold">2021</span>
+                        </div>
+                        <div class="md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                            
+                            <!-- Paper 1 -->
+                            <div class="mb-8 border-b border-stone-100 pb-8 last:border-0 last:pb-0 last:mb-0">
+                                <h4 class="text-lg font-bold text-stone-800 mb-1">Advances in nanomaterials for heterogeneous photocatalysis</h4>
+                                <p class="text-sm text-stone-500 italic mb-2">Nano Express 2, 012005</p>
+                                <p class="text-stone-600 leading-relaxed text-sm mb-3">
+                                    <strong>Thongam, D. D. & Chaturvedi, H.</strong> — A comprehensive review of recent advancements in nanomaterial engineering for optimizing heterogeneous photocatalytic processes.
+                                </p>
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 22</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 89</a>
+                                </div>
+                            </div>
+
+                            <!-- Paper 2 -->
+                            <div class="mb-0 border-b border-stone-100 pb-0 last:border-0 last:pb-0 last:mb-0">
+                                <h4 class="text-lg font-bold text-stone-800 mb-1">Nanomaterials for climate change and water pollution mitigation</h4>
+                                <p class="text-sm text-stone-500 italic mb-2">In: Water Conservation in the Era of Global Climate Change (Elsevier), 277-314</p>
+                                <p class="text-stone-600 leading-relaxed text-sm mb-3">
+                                    <strong>Thongam, D. D. & Chaturvedi, H.</strong> — Book chapter discussing the role of nanomaterials in addressing global climate challenges.
+                                </p>
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 7</a>
+                                    <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 18</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 2020 -->
+                    <div class="relative flex flex-col md:grid md:grid-cols-5 md:gap-8 group">
+                        <div class="hidden md:block absolute left-[19.6%] top-2 w-3 h-3 bg-stone-300 rounded-full group-hover:bg-sage-500 transition-colors z-10 border border-white"></div>
+                        <div class="md:col-span-1 text-left md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-xl md:text-2xl font-serif text-sage-600 font-bold">2020</span>
+                        </div>
+                        <div class="md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                            <h4 class="text-lg font-bold text-stone-800 mb-1">Effect of biochemical compounds on ZnO nanomaterial preparation using aloe vera and lemon extracts</h4>
+                            <p class="text-sm text-stone-500 italic mb-2">Materials Today: Proceedings 44, 4299-4304</p>
+                            <p class="text-stone-600 leading-relaxed text-sm mb-3">
+                                <strong>Thongam, D. D. & Chaturvedi, H.</strong> — Study on green synthesis of ZnO nanoparticles using natural extracts.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 19</a>
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 62</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2019 -->
+                    <div class="relative flex flex-col md:grid md:grid-cols-5 md:gap-8 group">
+                        <div class="hidden md:block absolute left-[19.6%] top-2 w-3 h-3 bg-stone-300 rounded-full group-hover:bg-sage-500 transition-colors z-10 border border-white"></div>
+                        <div class="md:col-span-1 text-left md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-xl md:text-2xl font-serif text-sage-600 font-bold">2019</span>
+                        </div>
+                        <div class="md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                            <h4 class="text-lg font-bold text-stone-800 mb-1">Effect of induced defects on the properties of ZnO nanocrystals: surfactant role and spectroscopic analysis</h4>
+                            <p class="text-sm text-stone-500 italic mb-2">SN Applied Sciences 1, 1-14</p>
+                            <p class="text-stone-600 leading-relaxed text-sm mb-3">
+                                <strong>Thongam, D. D., Gupta, J. & Sahu, N. K.</strong> — Investigating how induced defects influence the optical and structural properties of ZnO nanocrystals.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 95</a>
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 95</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2018 -->
+                    <div class="relative flex flex-col md:grid md:grid-cols-5 md:gap-8 group">
+                        <div class="hidden md:block absolute left-[19.6%] top-2 w-3 h-3 bg-stone-300 rounded-full group-hover:bg-sage-500 transition-colors z-10 border border-white"></div>
+                        <div class="md:col-span-1 text-left md:text-right md:pr-8 mb-2 md:mb-0">
+                            <span class="text-xl md:text-2xl font-serif text-sage-600 font-bold">2018</span>
+                        </div>
+                        <div class="md:col-span-4 bg-white p-6 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                            <h4 class="text-lg font-bold text-stone-800 mb-1">Investigating the role of different reducing agents, molar ratios, and synthesis medium over the formation of ZnO nanostructures and their photo-catalytic activity</h4>
+                            <p class="text-sm text-stone-500 italic mb-2">Journal of Materials Science 53, 1110-1122</p>
+                            <p class="text-stone-600 leading-relaxed text-sm mb-3">
+                                <strong>Thongam, D. D., Gupta, J., Sahu, N. K. & Bahadur, D.</strong> — Comprehensive analysis of synthesis parameters on ZnO nanostructure formation.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">View Article</a>
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Citations: 45</a>
+                                <a href="#" class="inline-block px-4 py-2 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-sage-500 hover:text-white transition-colors">Mendeley Reads: 110</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PHOTOGRAPHY TAB ================= -->
+        <section id="photography" class="page-section">
+            <div class="max-w-7xl mx-auto px-4 py-12 md:py-16">
+                <div class="text-center mb-10 md:mb-12">
+                    <h3 class="text-sage-600 font-bold tracking-widest uppercase text-sm mb-3">Visual Diary</h3>
+                    <h2 class="font-serif text-3xl md:text-4xl text-stone-800">Photography</h2>
+                    <p class="text-stone-500 mt-4 max-w-2xl mx-auto text-sm md:text-base">"To photograph is to hold one's breath, when all faculties converge to capture fleeting reality."</p>
+                </div>
+
+                <!-- Uniform Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    
+                    <!-- Photo 1 -->
+                    <div class="relative group overflow-hidden h-72 w-full">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1948&auto=format&fit=crop" class="w-full h-full object-cover rounded-sm transition-transform duration-700 group-hover:scale-105" alt="Foggy Forest">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-serif italic text-lg">Morning Mist</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 2 -->
+                    <div class="relative group overflow-hidden h-72 w-full">
+                        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=2068&auto=format&fit=crop" class="w-full h-full object-cover rounded-sm transition-transform duration-700 group-hover:scale-105" alt="Gold Texture">
+                    </div>
+                    
+                    <!-- Photo 3 -->
+                    <div class="relative group overflow-hidden h-72 w-full">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover rounded-sm transition-transform duration-700 group-hover:scale-105" alt="Yosemite">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-serif italic text-lg">Valley View</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 4 -->
+                    <div class="relative group overflow-hidden h-72 w-full">
+                        <img src="https://images.unsplash.com/photo-1534067783865-9abd352323d2?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover rounded-sm transition-transform duration-700 group-hover:scale-105" alt="Book and Coffee">
+                    </div>
+
+                    <!-- Photo 5 -->
+                    <div class="relative group overflow-hidden h-72 w-full">
+                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?q=80&w=2074&auto=format&fit=crop" class="w-full h-full object-cover rounded-sm transition-transform duration-700 group-hover:scale-105" alt="Deep Forest">
+                    </div>
+
+                    <!-- Photo 6 -->
+                    <div class="relative group overflow-hidden h-72 w-full">
+                        <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=2076&auto=format&fit=crop" class="w-full h-full object-cover rounded-sm transition-transform duration-700 group-hover:scale-105" alt="Dark Ocean">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-serif italic text-lg">Deep Blue</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 7 -->
+                    <div class="relative group overflow-hidden h-72 w-full">
+                        <img src="https://images.unsplash.com/photo-1501854140884-074cf2b21d25?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover rounded-sm transition-transform duration-700 group-hover:scale-105" alt="Mountain">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= BOOK SUMMARY TAB ================= -->
+        <section id="book-summary" class="page-section">
+             <div class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+                <div class="text-center mb-10 md:mb-16">
+                    <h3 class="text-sage-600 font-bold tracking-widest uppercase text-sm mb-3">Library</h3>
+                    <h2 class="font-serif text-3xl md:text-4xl text-stone-800">Reading Notes & Summaries</h2>
+                    <p class="text-stone-500 mt-4 text-sm md:text-base">Books that have shaped my thinking.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Book 1 -->
+                    <div class="bg-white border border-stone-100 rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-stone-200 overflow-hidden relative">
+                             <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-80" alt="Book Cover">
+                             <div class="absolute bottom-0 left-0 bg-white/90 p-2 px-4 font-bold text-stone-800 text-xs uppercase tracking-wide">Psychology</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-stone-800 mb-1">The Body Keeps the Score</h3>
+                            <p class="text-xs text-sage-600 uppercase mb-4">By Bessel van der Kolk</p>
+                            <p class="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                                A seminal work on trauma. The core thesis is that trauma is not just a mental event, but a physiological one. The body holds the memory of the event long after the mind has tried to forget.
+                            </p>
+                            <a href="#" class="text-sage-600 hover:text-stone-800 text-sm font-bold border-b border-sage-200 hover:border-stone-800 transition-colors pb-1">Read Summary</a>
+                        </div>
+                    </div>
+
+                    <!-- Book 2 -->
+                    <div class="bg-white border border-stone-100 rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-stone-200 overflow-hidden relative">
+                             <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-80" alt="Book Cover">
+                             <div class="absolute bottom-0 left-0 bg-white/90 p-2 px-4 font-bold text-stone-800 text-xs uppercase tracking-wide">Philosophy</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-stone-800 mb-1">Man's Search for Meaning</h3>
+                            <p class="text-xs text-sage-600 uppercase mb-4">By Viktor Frankl</p>
+                            <p class="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                                Frankl argues that the primary human drive is not pleasure (Freud) or power (Adler), but the pursuit of what we find meaningful. Even in suffering, meaning can be found.
+                            </p>
+                            <a href="#" class="text-sage-600 hover:text-stone-800 text-sm font-bold border-b border-sage-200 hover:border-stone-800 transition-colors pb-1">Read Summary</a>
+                        </div>
+                    </div>
+
+                    <!-- Book 3 -->
+                    <div class="bg-white border border-stone-100 rounded-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-stone-200 overflow-hidden relative">
+                             <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-80" alt="Book Cover">
+                             <div class="absolute bottom-0 left-0 bg-white/90 p-2 px-4 font-bold text-stone-800 text-xs uppercase tracking-wide">Fiction</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-stone-800 mb-1">Siddhartha</h3>
+                            <p class="text-xs text-sage-600 uppercase mb-4">By Hermann Hesse</p>
+                            <p class="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                                A journey of self-discovery. Siddhartha learns that wisdom cannot be taught, only experienced. The river serves as the ultimate metaphor for the unity of all things.
+                            </p>
+                            <a href="#" class="text-sage-600 hover:text-stone-800 text-sm font-bold border-b border-sage-200 hover:border-stone-800 transition-colors pb-1">Read Summary</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT TAB ================= -->
+        <section id="contact" class="page-section">
+            <div class="max-w-4xl mx-auto px-6 py-12 md:py-16 text-center">
+                <h2 class="font-serif text-3xl md:text-4xl text-stone-800 mb-6">Let's Connect</h2>
+                <p class="text-stone-600 mb-10 md:mb-16 font-light text-base md:text-lg max-w-2xl mx-auto">
+                    I am always open to discussing new research collaborations, speaking opportunities, or simply chatting about psychology and art.
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-24">
+                    <div class="flex flex-col items-center w-full md:w-auto">
+                        <div class="w-16 h-16 bg-sage-50 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-map-marker-alt text-sage-500 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-stone-800 uppercase text-xs tracking-wider mb-2">University Lab</h4>
+                        <p class="text-stone-600 leading-relaxed text-sm md:text-base">Department of Energy Science<br>IIT Guwahati<br>Assam, India 781039</p>
+                    </div>
+
+                    <div class="flex flex-col items-center w-full md:w-auto">
+                        <div class="w-16 h-16 bg-sage-50 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-envelope text-sage-500 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-stone-800 uppercase text-xs tracking-wider mb-2">Email</h4>
+                        <a href="mailto:devi176151105@iitg.ac.in" class="text-stone-600 hover:text-sage-600 text-base md:text-lg border-b border-sage-200 pb-1">devi176151105@iitg.ac.in</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-6 md:mb-0">
+                <h3 class="font-serif text-2xl text-stone-200 mb-2">Debika Thongam</h3>
+                <p class="text-sm font-light">Research, Writing, & Photography.</p>
+            </div>
+            <div class="flex space-x-6 text-xl mb-6 md:mb-0">
+                <a href="https://www.linkedin.com/in/debika-devi-thongam-5b1a50110/" target="_blank" class="hover:text-sage-400 transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.researchgate.net/profile/Debika-Thongam" target="_blank" class="hover:text-sage-400 transition-colors"><i class="fab fa-researchgate"></i></a>
+            </div>
+            <div class="text-xs font-light uppercase tracking-wider">
+                &copy; 2025 Debika Thongam. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Navigation Logic ---
+        function switchTab(tabId) {
+            // 1. Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                // Optional: scroll to top when switching
+            });
+
+            // 2. Show the selected section
+            const activeSection = document.getElementById(tabId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // 3. Update Active State on Buttons (Desktop)
+            const navButtons = document.querySelectorAll('.nav-link');
+            navButtons.forEach(btn => {
+                // Check if the button's text matches the tabId (loosely)
+                // Or better, check the onclick attribute or text content
+                if (btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // 4. Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // --- Mobile Menu Toggle ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize: Set Home active on load
+        document.addEventListener('DOMContentLoaded', () => {
+           // Ensure buttons are styled correctly on load
+           const navButtons = document.querySelectorAll('.nav-link');
+           if (navButtons.length > 0) {
+               navButtons[0].classList.add('active'); // Set Home active
+           }
+        });
+    </script>
+</body>
+</html>
